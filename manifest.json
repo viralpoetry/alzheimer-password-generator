@@ -1,0 +1,14 @@
+{
+  "name": "Page dependent password generator",
+  "description": "Page dependent password generator",
+  "version": "1.0",
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*"
+  ],
+  "browser_action": {
+      "default_title": "Get password",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}
