@@ -37,7 +37,7 @@ function transform_to_pass(hash) {
     for(x = 0; x< 16; x++) {
         password += chars.charAt(byteArray[x] % 62);
     }
-    console.log(byteArray);
+    //console.log(byteArray);
     show_result(password);
 }
 

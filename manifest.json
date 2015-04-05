@@ -1,6 +1,6 @@
 {
-  "name": "Page dependent password generator",
-  "description": "Page dependent password generator",
+  "name": "Web page dependent password generator",
+  "description": "Final password is cryptographically derived from web page URL address and user provided secret passphrase.",
   "version": "1.0",
   "permissions": [
     "tabs", "http://*/*", "https://*/*"
@@ -10,5 +10,8 @@
       "default_icon": "icon.png",
       "default_popup": "popup.html"
   },
-  "manifest_version": 2
+  "manifest_version": 2,
+  "icons": {
+      "128": "icon.png"
+  }
 }
