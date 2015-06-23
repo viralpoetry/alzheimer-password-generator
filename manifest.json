@@ -3,15 +3,24 @@
   "description": "Final password is cryptographically derived from web page URL address and user provided secret passphrase.",
   "version": "1.0",
   "permissions": [
-    "tabs", "http://*/*", "https://*/*"
-  ],
-  "browser_action": {
-      "default_title": "Get password",
-      "default_icon": "icon.png",
-      "default_popup": "popup.html"
+    "contextMenus",
+    "storage",
+    "activeTab"
+    ],
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["lib/pbkdf2.js", "main.js"],
+    "persistent": false
   },
-  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "matches": ["http://*/*","https://*/*"],
+      "js": ["content_script.js"]
+    }
+  ],
   "icons": {
-      "128": "icon.png"
-  }
+      "128": "img/icon.png"
+  },
+  "manifest_version": 2
 }
