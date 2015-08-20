@@ -1,9 +1,8 @@
-
 // for backward compatibility
 if (!chrome.runtime) {
     // Chrome 20-21
     chrome.runtime = chrome.extension;
-} else if(!chrome.runtime.onMessage) {
+} else if (!chrome.runtime.onMessage) {
     // Chrome 22-25
     chrome.runtime.onMessage = chrome.extension.onMessage;
     chrome.runtime.sendMessage = chrome.extension.sendMessage;
@@ -11,10 +10,54 @@ if (!chrome.runtime) {
     chrome.runtime.connect = chrome.extension.connect;
 }
 
+// global variable
 var clickedEl;
 
+function password_funct(salt, curr_url) {
+    var box = clickedEl;
+    passphrase = document.getElementById("frm2").elements.item(1).value;
+    console.log("passphrase: " + passphrase);
+    console.log("salt: " + salt);
+    console.log("curr_url: " + curr_url);
+    password = generator(passphrase, salt + curr_url);
+    console.log("password: " + password);
+    box.value = password;
+}
+
+// THX to http://stackoverflow.com/questions/13740912/chrome-ext-content-script-that-creates-jquery-dialog-need-to-ignore-iframes
+function injectPopup(salt, curr_url) {
+    var showModal = function(title) {
+        $('<div />')
+            .html('<form id="frm2">\
+               current URL:  <input type="text" name="curr_url" value=' + curr_url + '><br><br>\
+               Passphrase:   <input type="text" name="pass" value="hovno">\
+               </form>')
+            .appendTo("body")
+            .dialog({
+                title: title,
+                modal: true,
+                width: 400,
+                hide: "fade",
+                show: "fade",
+                buttons: {
+                    "OK": function() {
+                        password_funct(salt, curr_url);
+                        $(this).dialog("close");
+                    },
+                    "Cancel": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+    };
+
+    $("html").addClass("no-macosx");
+    showModal("password generator");
+    //e.preventDefault();
+}
+
 // detect right click on element
-document.addEventListener("mousedown", function (ev) {
+document.addEventListener("mousedown", function(ev) {
     if (ev.button == 2) {
         clickedEl = ev.target;
     }
@@ -24,16 +67,15 @@ document.addEventListener("mousedown", function (ev) {
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     var box = clickedEl;
 
-    if (message.action === "paste_pass") {
+    if ((message.action === "paste_pass") && (typeof message.salt !== "undefined") && (typeof message.curr_url !== "undefined")) {
         // is this site using HTTPS?
         if (window.location.protocol != "https:") {
             alert("This site isn't using HTTPS connection!");
         } else {
-            // paste password to the selected field
-            box.value = message.data;
+            // ask for passphrase
+            injectPopup(message.salt, message.curr_url);
         }
+    } else {
+        //console.log(message.action + " " + message.salt + " " + message.curr_url);
     }
 });
-
-
-
