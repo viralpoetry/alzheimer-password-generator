@@ -10,7 +10,7 @@
     ],
     "options_page": "options.html",
     "background": {
-        "scripts": [ //"lib/pbkdf2.js",
+        "scripts": [//"lib/pbkdf2.js",
             "main.js"
         ],
         "persistent": false

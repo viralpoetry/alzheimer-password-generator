@@ -10,7 +10,7 @@
 
     <form id="frm1">
         generated salt (you can provide your own):
-        <input type="text" name="lname" value="SaltShouldBeRandom">
+        <input type="text" name="lname" value="">
         <br>
         <br>
         <input id="save" type="button" value="Save">
@@ -28,6 +28,8 @@
         <a href="https://github.com/viralpoetry/password-generator">Project info and source (Github)</a>
     </div>
 
+    <script src="lib/pbkdf2.js"></script>
+    <script src="crypto_helpers.js"></script>
     <script src="options.js"></script>
 </body>
 

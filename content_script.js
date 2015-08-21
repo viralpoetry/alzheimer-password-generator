@@ -16,12 +16,10 @@ var clickedEl;
 function password_funct(salt, curr_url) {
     var box = clickedEl;
     passphrase = document.getElementById("frm2").elements.item(1).value;
-    console.log("passphrase: " + passphrase);
-    console.log("salt: " + salt);
-    console.log("curr_url: " + curr_url);
     password = generator(passphrase, salt + curr_url);
-    console.log("password: " + password);
     box.value = password;
+    delete passphrase;
+    delete password;
 }
 
 // THX to http://stackoverflow.com/questions/13740912/chrome-ext-content-script-that-creates-jquery-dialog-need-to-ignore-iframes
@@ -30,12 +28,13 @@ function injectPopup(salt, curr_url) {
         $('<div />')
             .html('<form id="frm2">\
                current URL:  <input type="text" name="curr_url" value=' + curr_url + '><br><br>\
-               Passphrase:   <input type="text" name="pass" value="hovno">\
+               Passphrase:   <input type="password" name="pass" value="">\
                </form>')
             .appendTo("body")
             .dialog({
                 title: title,
                 modal: true,
+                position: ['center',20],
                 width: 400,
                 hide: "fade",
                 show: "fade",
@@ -50,10 +49,8 @@ function injectPopup(salt, curr_url) {
                 }
             });
     };
-
     $("html").addClass("no-macosx");
     showModal("password generator");
-    //e.preventDefault();
 }
 
 // detect right click on element
@@ -79,3 +76,4 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         //console.log(message.action + " " + message.salt + " " + message.curr_url);
     }
 });
+

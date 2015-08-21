@@ -7,9 +7,15 @@ TODO:
 - better parse url address (remove www, etc...)
 - change icon
 - create css for options page
+- focus cursor on the passphrase input
+- notify user (red alert) that the site is not using HTTPS instead of banning key generations...
 - show "Wait..." information when generating password...
 - generate random salt upon installation (but user can rewrite that value)
 - how to retrieve salt later?
+
+KNOWN BUGS:
+- send by Enter not working
+- some pages rewrite my dialog css...
 
 
 Version 2:
@@ -24,6 +30,7 @@ Current Threat Model:
 
  - Attacker should not be able to brute force master passphrase from the salt and knowledge of one password (PBKDF with lots of iterations).
 
+ - it provides protection against basic keyloggers (but they can read our salt from the memory / file...)
 
 Libraries used:
 https://github.com/kiandra/Delta-jQuery-UI-Theme

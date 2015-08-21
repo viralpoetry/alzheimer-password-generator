@@ -32,29 +32,18 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
                 url: chrome.extension.getURL("options.html")
             });
         } else {
-            // ask for password
-            //passphrase = enter_password();
-            //passphrase = "";
-            //password = result.passwd_salt + passphrase;
-            //password = "";
-
-            //chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             chrome.tabs.query({
                 'active': true,
                 'lastFocusedWindow': true
             }, function(tabs) {
-                //chrome.tabs.executeScript(null, { code: "content.js" });
                 // ou ouu ouuuuu
                 var curr_url = new URL(tabs[0].url).hostname;
-                //password = generator(passphrase, url);
-                //delete passphrase;
                 chrome.tabs.sendMessage(tabs[0].id, {
                     action: "paste_pass",
                     salt: result.passwd_salt,
                     curr_url: curr_url
                 }, function(response) {
-                    console.log("background sent...");
-                    //delete password;
+                    //console.log("background sent...");
                 });
             });
         }
