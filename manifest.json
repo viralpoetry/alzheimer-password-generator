@@ -18,7 +18,7 @@
     "content_scripts": [{
         "all_frames": true,
         "matches": ["http://*/*", "https://*/*"],
-        "css": ["theme/jquery-ui.css"],
+        "css": ["theme/jquery-ui.css", "custom.css"],
         "js": [ //"js/modernizr-2.0.6.min.js",
             "js/jquery.min.js",
             "js/jquery-ui.min.js",
@@ -31,7 +31,8 @@
     }],
     "web_accessible_resources": [
         "theme/images/*.png",
-        "theme/jquery-ui.css"
+        "theme/jquery-ui.css",
+        "custom.css"
     ],
     "icons": {
         "128": "img/icon.png"

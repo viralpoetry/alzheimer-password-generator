@@ -25,10 +25,9 @@ function password_funct(salt, curr_url) {
 // THX to http://stackoverflow.com/questions/13740912/chrome-ext-content-script-that-creates-jquery-dialog-need-to-ignore-iframes
 function injectPopup(salt, curr_url) {
     var showModal = function(title) {
-        $('<div />')
-            .html('<form id="frm2">\
-               current URL:  <input type="text" name="curr_url" value=' + curr_url + '><br><br>\
-               Passphrase:   <input type="password" name="pass" value="">\
+            $('<div />').html('<form id="frm2">\
+               current URL:  <input type="text" tabindex="-1" name="curr_url" value=' + curr_url + '><br><br>\
+               Passphrase:   <input id="frm-pass-input" type="password" name="pass" value="">\
                </form>')
             .appendTo("body")
             .dialog({
@@ -46,11 +45,19 @@ function injectPopup(salt, curr_url) {
                     "Cancel": function() {
                         $(this).dialog("close");
                     }
+                },
+                open: function( event, ui ) {
+                    $(this).keypress(function(e) {
+                        if (e.keyCode == $.ui.keyCode.ENTER) {
+                            $(this).parent().find("button:eq(0)").trigger("click");
+                        }
+                    });
                 }
             });
     };
-    $("html").addClass("no-macosx");
     showModal("password generator");
+    // focus cursor on passphrase field
+    $("#frm-pass-input").focus();
 }
 
 // detect right click on element
