@@ -33,6 +33,7 @@ chrome.storage.local.get('passwd_salt', function(result) {
     if (!result.passwd_salt) {
         // generate random salt....
         document.getElementById("frm1").elements.item(0).value = transform_to_pass(CryptoJS.lib.WordArray.random(16));
+        save_options();
     } else {
         document.getElementById("frm1").elements.item(0).value = result.passwd_salt;
     }

@@ -12,6 +12,8 @@ TODO:
 - show "Wait..." information when generating password...
 - generate random salt upon installation (but user can rewrite that value)
 - how to retrieve salt later?
+- Generate Passphrase to clipboard (when you need it outside of browser)
+- deal with forbidden right click...
 
 KNOWN BUGS:
 - send by Enter not working
