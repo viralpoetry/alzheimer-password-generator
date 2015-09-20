@@ -1,8 +1,24 @@
-# password-generator
-Chrome extension for domain dependent password generation.
+# Alzheimer password generator
+##Chrome extension for domain dependent password generation.
+
+Final password is cryptographically derived from web page URL address, salt and user provided secret passphrase.
+The salt should be stored physically, so you can recover it in the future.
+
+Work in progress. The crypto part works fine, but there are some jQuery/css issues on some pages (iframes, jQuery dialog etc.)
+
+Current Threat Model:
+ - No one with an access to the PC with installed extension should be able to authenticate without knowing the correct passphrase.
+
+ - The same passphrase used in two different web browsers should produce two different passwords (cryptographic salt will solve this problem).
+
+ - If an attacker obtains password for some websites, she should not be able to derive passwords for another websites using that knowledge.
+
+ - Attacker should not be able to brute force master passphrase from the salt and knowledge of one password (PBKDF with lots of iterations).
+
+ - it provides protection against basic keyloggers (but they can read our salt from the memory / file...)
 
 
-Work in progress.
+
 TODO:
 - better parse url address (remove www, etc...)
 - change icon
@@ -16,23 +32,13 @@ TODO:
 - deal with forbidden right click...
 
 KNOWN BUGS:
-- send by Enter not working
+- send by Enter not always working
 - some pages rewrite my dialog css...
 
 
 Version 2:
 - user should be able to choose what kind of characters are included in password
 
-Current Threat Model:
- - No one with an access to the PC with installed extension should be able to authenticate without knowing the correct passphrase.
-
- - The same passphrase used in two different web browsers should produce two different passwords (cryptographic salt will solve this problem).
-
- - If an attacker obtains password for some websites, she should not be able to derive passwords for another websites using that knowledge.
-
- - Attacker should not be able to brute force master passphrase from the salt and knowledge of one password (PBKDF with lots of iterations).
-
- - it provides protection against basic keyloggers (but they can read our salt from the memory / file...)
 
 Libraries used:
 https://github.com/kiandra/Delta-jQuery-UI-Theme
