@@ -18,6 +18,17 @@ Current Threat Model:
  - it provides protection against basic keyloggers (but they can read our salt from the memory / file...)
 
 
+Options page:
+![alt text](https://github.com/viralpoetry/password-generator/blob/master/chrome_store_pictures/alzheimer_1.png "Options page")
+
+Call Alzheimer pop-up:
+![alt text](https://github.com/viralpoetry/password-generator/blob/master/chrome_store_pictures/alzheimer_2_.png "Call Alzheimer pop-up")
+
+Enter password:
+![alt text](https://github.com/viralpoetry/password-generator/blob/master/chrome_store_pictures/alzheimer_3.png "Enter password")
+
+Derived strong password is placed to the form:
+![alt text](https://github.com/viralpoetry/password-generator/blob/master/chrome_store_pictures/alzheimer_4.png "Derived strong password is placed to the form")
 
 TODO:
 - better parse url address (remove www, etc...)
