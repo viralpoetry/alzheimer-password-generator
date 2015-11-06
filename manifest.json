@@ -1,7 +1,7 @@
 {
     "name": "Alzheimer password generator",
     "description": "Final password is cryptographically derived from web page URL address, salt and user provided secret passphrase.",
-    "version": "1.0",
+    "version": "0.9",
     "permissions": [
         "contextMenus",
         "storage",

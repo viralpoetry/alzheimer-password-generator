@@ -3,34 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Extension Options</title>
+    <title>Options</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
 </head>
 
 <body>
+  <div class="container">
+        <div class="row">
+          <div class="six columns" style="margin-top: 10%;">
+             <h4 style="color:#B0C959"><b>Alzheimer</b></h4>
+            <form id="frm1">
+                <!-- <input type="text" name="lname" value=""> -->
+                <label for="slt">Generated salt - write it down!</label>
+                <input class="u-full-width" type="text" name="lname" id="slt" autocomplete="off">
+                <br>
+                <br>
+                <!-- <input id="save" type="button" value="Save">
+                <input id="clear" type="button" value="Clear"> -->
+                <input id="save" type="button" value="Save">
+                <input id="clear" type="button" value="Clear">
+            </form>
 
-    <form id="frm1">
-        generated salt (you can provide your own):
-        <input type="text" name="lname" value="">
-        <br>
-        <br>
-        <input id="save" type="button" value="Save">
-        <input id="clear" type="button" value="Clear">
-    </form>
+            <br>
+            <br>
+            <div id="status"></div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div id="github_link">
+                <a href="https://github.com/viralpoetry/password-generator">Project info and source (Github)</a>
+            </div>
 
-    <br>
-    <br>
-    <div id="status"></div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div id="github_link">
-        <a href="https://github.com/viralpoetry/password-generator">Project info and source (Github)</a>
+            <script src="lib/pbkdf2.js"></script>
+            <script src="crypto_helpers.js"></script>
+            <script src="options.js"></script>
+          </div>
+        </div>
     </div>
-
-    <script src="lib/pbkdf2.js"></script>
-    <script src="crypto_helpers.js"></script>
-    <script src="options.js"></script>
 </body>
 
 </html>
