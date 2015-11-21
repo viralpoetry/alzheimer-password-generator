@@ -16,7 +16,8 @@ var clickedEl;
 function password_funct(salt, curr_url) {
     var box = clickedEl;
     passphrase = document.getElementById("frm2").elements.item(1).value;
-    password = generator(passphrase, salt + curr_url);
+    // derive password from passphrase, cryptographic salt and current URL
+    password = generator(passphrase, salt, curr_url);
     box.value = password;
     delete passphrase;
     delete password;
