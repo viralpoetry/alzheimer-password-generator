@@ -1,6 +1,9 @@
 # Alzheimer password generator
 ##Chrome extension for domain dependent password generation.
 
+
+[https://chrome.google.com/webstore/detail/alzheimer-password-genera/emclcafdgdeodlhpenmejdapecfgenof](https://chrome.google.com/webstore/detail/alzheimer-password-genera/emclcafdgdeodlhpenmejdapecfgenof "Alzheimer password generator")
+
 Final password is cryptographically derived from web page URL address, salt and user provided secret passphrase.
 The salt should be stored physically, so you can recover it in the future.
 
