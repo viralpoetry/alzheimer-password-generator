@@ -14,11 +14,14 @@ if (!chrome.runtime) {
 var clickedEl;
 
 function password_funct(salt, curr_url) {
-    var box = clickedEl;
+    box = clickedEl;
     passphrase = document.getElementById("frm2").elements.item(1).value;
     // derive password from passphrase, cryptographic salt and current URL
     password = generator(passphrase, salt, curr_url);
     box.value = password;
+    // clean up
+    passphrase = null;
+    password = null;
     delete passphrase;
     delete password;
 }
@@ -26,7 +29,7 @@ function password_funct(salt, curr_url) {
 // THX to http://stackoverflow.com/questions/13740912/chrome-ext-content-script-that-creates-jquery-dialog-need-to-ignore-iframes
 function injectPopup(salt, curr_url) {
     var showModal = function(title) {
-            $('<div />').html('<form id="frm2">\
+        $('<div />').html('<form id="frm2">\
                current URL:  <input type="text" tabindex="-1" name="curr_url" value=' + curr_url + '><br><br>\
                Passphrase:   <input id="frm-pass-input" type="password" name="pass" value="">\
                </form>')
@@ -34,7 +37,7 @@ function injectPopup(salt, curr_url) {
             .dialog({
                 title: title,
                 modal: true,
-                position: ['center',20],
+                position: ['center', 20],
                 width: 400,
                 hide: "fade",
                 show: "fade",
@@ -47,12 +50,15 @@ function injectPopup(salt, curr_url) {
                         $(this).dialog("close");
                     }
                 },
-                open: function( event, ui ) {
+                open: function(event, ui) {
                     $(this).keypress(function(e) {
                         if (e.keyCode == $.ui.keyCode.ENTER) {
                             $(this).parent().find("button:eq(0)").trigger("click");
                         }
                     });
+                },
+                close: function(event, ui) {
+                    $(this).dialog('destroy').remove()
                 }
             });
     };
@@ -84,4 +90,3 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         //console.log(message.action + " " + message.salt + " " + message.curr_url);
     }
 });
-
