@@ -37,6 +37,7 @@ function injectPopup(salt, curr_url) {
             .dialog({
                 title: title,
                 modal: true,
+                //zindex: 1001, // Default is 1000
                 position: ['center', 20],
                 width: 400,
                 hide: "fade",
