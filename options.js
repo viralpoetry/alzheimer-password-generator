@@ -1,42 +1,42 @@
 // update div element with app status
 function show_result(txt) {
-    var status = document.getElementById('status');
-    status.textContent = txt;
+  var status = document.getElementById('status');
+  status.textContent = txt;
 }
 
 // Saves options to chrome.storage
 function save_options() {
-    // lname
-    salt = document.getElementById("frm1").elements.item(0).value;
+  // lname
+  salt = document.getElementById("frm1").elements.item(0).value;
 
-    chrome.storage.local.set({
-        'passwd_salt': salt
-    }, function() {
-        // Notify that we saved.
-        if (chrome.extension.lastError) {
-            console.log('An error occurred: ' + chrome.extension.lastError.message);
-        }
-        show_result('Data has been successfully saved.');
-    });
+  chrome.storage.local.set({
+    'passwd_salt': salt
+  }, function() {
+    // Notify that we saved.
+    if (chrome.extension.lastError) {
+      console.log('An error occurred: ' + chrome.extension.lastError.message);
+    }
+    show_result('Data has been successfully saved.');
+  });
 }
 
 function clear_storage() {
-    //window.localStorage.clear();
-    chrome.storage.local.clear();
-    //show_result('Data has been cleared.');
-    // clear form
-    document.getElementById("frm1").elements.item(0).value = '';
-    show_result('Seed has been removed.');
+  //window.localStorage.clear();
+  chrome.storage.local.clear();
+  //show_result('Data has been cleared.');
+  // clear form
+  document.getElementById("frm1").elements.item(0).value = '';
+  show_result('Seed has been removed.');
 }
 
 chrome.storage.local.get('passwd_salt', function(result) {
-    if (!result.passwd_salt) {
-        // generate random salt and save it to the store
-        document.getElementById("frm1").elements.item(0).value = transform_to_pass(CryptoJS.lib.WordArray.random(16));
-        save_options();
-    } else {
-        document.getElementById("frm1").elements.item(0).value = result.passwd_salt;
-    }
+  if (!result.passwd_salt) {
+    // generate random salt and save it to the store
+    document.getElementById("frm1").elements.item(0).value = transform_to_pass(CryptoJS.lib.WordArray.random(16));
+    save_options();
+  } else {
+    document.getElementById("frm1").elements.item(0).value = result.passwd_salt;
+  }
 });
 
 document.getElementById('save').addEventListener('click', save_options);
