@@ -13,8 +13,8 @@ function save_options() {
     'passwd_salt': salt
   }, function() {
     // Notify that we saved.
-    if (chrome.extension.lastError) {
-      console.log('An error occurred: ' + chrome.extension.lastError.message);
+    if (chrome.runtime.lastError) {
+      console.log('An error occurred: ' + chrome.runtime.lastError.message);
     }
     show_result('Data has been successfully saved.');
   });

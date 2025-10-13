@@ -1,15 +1,3 @@
-// for backward compatibility
-if (!chrome.runtime) {
-  // Chrome 20-21
-  chrome.runtime = chrome.extension;
-} else if (!chrome.runtime.onMessage) {
-  // Chrome 22-25
-  chrome.runtime.onMessage = chrome.extension.onMessage;
-  chrome.runtime.sendMessage = chrome.extension.sendMessage;
-  chrome.runtime.onConnect = chrome.extension.onConnect;
-  chrome.runtime.connect = chrome.extension.connect;
-}
-
 // global variable
 var clickedEl;
 
@@ -22,8 +10,6 @@ function password_funct(salt, curr_url) {
   // clean up
   passphrase = null;
   password = null;
-  delete passphrase;
-  delete password;
 }
 
 // THX to http://stackoverflow.com/questions/13740912/chrome-ext-content-script-that-creates-jquery-dialog-need-to-ignore-iframes

@@ -1,19 +1,6 @@
-// for backward compatibility
-if (!chrome.runtime) {
-  // Chrome 20-21
-  chrome.runtime = chrome.extension;
-} else if (!chrome.runtime.onMessage) {
-  // Chrome 22-25
-  chrome.runtime.onMessage = chrome.extension.onMessage;
-  chrome.runtime.sendMessage = chrome.extension.sendMessage;
-  chrome.runtime.onConnect = chrome.extension.onConnect;
-  chrome.runtime.connect = chrome.extension.connect;
-}
-
 // after install
 // generate random salt for the first time?
 chrome.runtime.onInstalled.addListener(function(details) {
-  //chrome.tabs.create({ url: chrome.extension.getURL("options.html") });
   // create context menu item
   chrome.contextMenus.create({
     type: "normal",
@@ -29,7 +16,7 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
     if (!result.passwd_salt) {
       // redirect to Options
       chrome.tabs.create({
-        url: chrome.extension.getURL("options.html")
+        url: chrome.runtime.getURL("options.html")
       });
     } else {
       chrome.tabs.query({
@@ -49,14 +36,3 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
     }
   });
 });
-
-/*
-chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-    var url = tabs[0].url;
-    // ou ouu ouuuuu
-    if (url) {
-        var url = new URL(url).hostname;
-    }
-    //show_salt(url);
-});
-*/

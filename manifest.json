@@ -5,15 +5,15 @@
   "permissions": [
     "contextMenus",
     "storage",
-    "activeTab",
-    "<all_urls>"
+    "activeTab"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
   ],
   "options_page": "options.html",
   "background": {
-    "scripts": [
-      "main.js"
-    ],
-    "persistent": false
+    "service_worker": "main.js"
   },
   "content_scripts": [{
     "all_frames": false,
@@ -27,16 +27,19 @@
       "content_script.js"
     ]
   }],
-  "web_accessible_resources": [
-    "theme/images/*.png",
-    "theme/jquery-ui.css",
-    "custom.css"
-  ],
+  "web_accessible_resources": [{
+    "resources": [
+      "theme/images/*.png",
+      "theme/jquery-ui.css",
+      "custom.css"
+    ],
+    "matches": ["<all_urls>"]
+  }],
   "icons": {
     "128": "img/icon.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "img/icon.png"
   },
-  "manifest_version": 2
+  "manifest_version": 3
 }
