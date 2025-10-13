@@ -8,8 +8,6 @@
 Final password is cryptographically derived from web page URL address, salt and user provided secret passphrase.
 The salt should be stored physically, so you can recover it in the future.
 
-Work in progress. The crypto part works fine, but there are some jQuery/css issues on some pages (iframes, jQuery dialog etc.)
-
 Current Threat Model:  
 
  - No one with an access to the PC with installed extension should be able to authenticate without knowing the correct passphrase.
@@ -58,7 +56,3 @@ Version 2:
 
   - user should be able to choose what kind of characters are included in the password  
   - salt in the Options page should be not readable by default  
-
-
-Libraries used:  
-[Delta-jQuery-UI-Theme](https://github.com/kiandra/Delta-jQuery-UI-Theme)
