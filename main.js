@@ -22,8 +22,23 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
         'active': true,
         'lastFocusedWindow': true
       }, function(tabs) {
-        // ou ouu ouuuuu
-        var curr_url = new URL(tabs[0].url).hostname;
+        // Validate URL and extract hostname safely
+        var curr_url;
+        try {
+          var url = new URL(tabs[0].url);
+          // Check if it's a valid web URL (http or https)
+          if (url.protocol === 'http:' || url.protocol === 'https:') {
+            curr_url = url.hostname;
+          } else {
+            // Handle special URLs like chrome://, about: and others
+            console.warn("Password generation not supported for URL:", tabs[0].url);
+            return;
+          }
+        } catch (error) {
+          console.error("Invalid URL:", tabs[0].url, error);
+          return;
+        }
+
         chrome.tabs.sendMessage(tabs[0].id, {
           action: "paste_pass",
           salt: result.passwd_salt,
