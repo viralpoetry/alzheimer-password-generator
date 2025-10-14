@@ -19,11 +19,9 @@ function transform_to_pass(hash) {
   for (x = 0; x < 16; x++) {
     password += chars.charAt(byteArray[x] % 62);
   }
-  //console.log(byteArray);
   return password;
 }
 
-// function generator(passphrase, page_info) {
 function generator(passphrase, salt, curr_url) {
   // page_info contains cryptographically generated salt and current URL
   var salt = CryptoJS.enc.Hex.parse(salt + curr_url);

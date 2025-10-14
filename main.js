@@ -1,5 +1,4 @@
-// after install
-// generate random salt for the first time?
+// Generate random salt for the first time after installation
 chrome.runtime.onInstalled.addListener(function(details) {
   // create context menu item
   chrome.contextMenus.create({
@@ -30,7 +29,9 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
           salt: result.passwd_salt,
           curr_url: curr_url
         }, function(response) {
-          //console.log("background sent...");
+          if (chrome.runtime.lastError) {
+            console.error("Error sending message:", chrome.runtime.lastError);
+          }
         });
       });
     }

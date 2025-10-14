@@ -1,7 +1,7 @@
 {
   "name": "Alzheimer password generator",
-  "description": "Final password is cryptographically derived from web page URL address, salt and user provided secret passphrase.",
-  "version": "0.91",
+  "description": "Derive a cryptographically secure password from the web page address, salt and user provided secret passphrase.",
+  "version": "1.0",
   "permissions": [
     "contextMenus",
     "storage",
@@ -18,7 +18,6 @@
   "content_scripts": [{
     "all_frames": false,
     "matches": ["http://*/*", "https://*/*"],
-    "css": ["custom.css"],
     "js": [
       "lib/pbkdf2.js",
       "crypto_helpers.js",
@@ -26,9 +25,7 @@
     ]
   }],
   "web_accessible_resources": [{
-    "resources": [
-      "custom.css"
-    ],
+    "resources": ["css/custom.css"],
     "matches": ["<all_urls>"]
   }],
   "icons": {

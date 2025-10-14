@@ -46,11 +46,10 @@ TODO:
  - Generate Passphrase to clipboard (when you need it outside of browser)
  - deal with forbidden right click...
 
-KNOWN BUGS:  
+## Recent Changes
 
- - send by Enter not always working
- - some pages rewrite my dialog css...
-
+**v0.91+ - Shadow DOM Implementation**
+- Implemented Shadow DOM for complete style isolation
 
 Version 2:  
 
